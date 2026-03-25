@@ -1,120 +1,133 @@
-🚀 SkillSwap – Skill Sharing & Chat Platform
+# 🚀 SkillSwap – Skill Sharing & Chat Platform
 
-A full-stack Flask web application that allows users to exchange skills, chat in real-time, and manage profiles. Built with modern development practices including Docker and GitHub integration.
+A full-stack Flask web application that allows users to exchange skills, chat with each other, and share files. Built using Flask, SQLAlchemy, Docker, and GitHub.
 
-📑 Table of Contents
-Features
-Project Structure
-Tech Stack
-Getting Started
-Local Setup
-Docker Setup
-GitHub Setup
-Application Flow
-Future Improvements
-✨ Features
-Category	Features
-Authentication	User registration & login system
-Chat System	One-to-one messaging with file sharing
-Skills	Add, view, and exchange skills
-Dashboard	User dashboard with navigation
-File Upload	Send files in chat
-Message Status	Sent / Seen status
-UI	Simple responsive interface
-📁 Project Structure
+---
+
+## 📑 Table of Contents
+- Features  
+- Project Structure  
+- Tech Stack  
+- Getting Started  
+- Local Setup  
+- Docker Setup  
+- GitHub Setup  
+- Application Flow  
+- Future Improvements  
+
+---
+
+## ✨ Features
+
+| Category | Features |
+|--------|---------|
+| Authentication | User registration & login |
+| Chat System | One-to-one messaging |
+| Skills | Add and view skills |
+| File Upload | Send files in chat |
+| Dashboard | User dashboard |
+| Message Status | Sent / Seen |
+
+---
+
+## 📁 Project Structure
+
 SkillSwap/
 │
-├── app.py                 # Main Flask app
-├── templates/             # HTML pages
-│   ├── login.html
-│   ├── register.html
-│   ├── dashboard.html
-│   ├── chat.html
-│   └── mychats.html
+├── app.py  
+├── templates/  
+│   ├── login.html  
+│   ├── register.html  
+│   ├── dashboard.html  
+│   ├── chat.html  
+│   └── mychats.html  
 │
-├── static/
-│   ├── style.css
-│   └── uploads/           # Uploaded files
+├── static/  
+│   ├── style.css  
+│   └── uploads/  
 │
-├── models.py              # Database models
-├── requirements.txt       # Python dependencies
-├── Dockerfile             # Docker config
-├── .gitignore             # Ignore unnecessary files
-└── README.md              # Project documentation
-🛠️ Tech Stack
-Category	Technology
-Backend	Flask (Python)
-Database	SQLite / SQLAlchemy
-Frontend	HTML, CSS
-File Handling	Werkzeug
-Containerization	Docker
-Version Control	Git & GitHub
-⚙️ Getting Started
-Prerequisites
-Python 3.10+
-pip
-Git
-(Optional) Docker
-💻 Local Development
-# Clone repo
+├── models.py  
+├── requirements.txt  
+├── Dockerfile  
+├── .gitignore  
+└── README.md  
+
+---
+
+## 🛠️ Tech Stack
+
+- Backend: Flask (Python)  
+- Database: SQLite / SQLAlchemy  
+- Frontend: HTML, CSS  
+- File Handling: Werkzeug  
+- Containerization: Docker  
+- Version Control: GitHub  
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+- Python 3.10+
+- pip
+- Git
+- (Optional) Docker
+
+---
+
+## 💻 Local Development
+
+```bash
 git clone https://github.com/your-username/skillswap.git
 cd skillswap
 
-# Install dependencies
 pip install -r requirements.txt
-
-# Run app
 python app.py
-
-👉 Open:
+Open in browser:
 http://127.0.0.1:5000
-
 🐳 Docker Setup
 Build Image
 docker build -t skillswap-app .
 Run Container
 docker run -p 5000:5000 skillswap-app
-
-👉 Open:
+Open:
 http://localhost:5000
-
-🔗 GitHub Setup (Step-by-step)
+🔗 GitHub Setup
 git init
 git add .
-git commit -m "Initial commit - SkillSwap project"
+git commit -m "Initial commit - SkillSwap"
 
 git branch -M main
 git remote add origin https://github.com/your-username/skillswap.git
 git push -u origin main
 🔄 Application Flow
-User registers / logs in
+User registers or logs in
 User enters dashboard
 User selects another user
 Chat starts
-Messages stored in database
-File uploads saved in /static/uploads
-Message status updated (Sent → Seen)
+Messages saved in database
+Files stored in static/uploads
+Status updates (Sent → Seen)
 💬 Chat Features
-Send text messages
+Send messages
 Upload files
 Delete messages
-Auto scroll to latest message
-Status tracking
+View message status
 
-⚠️ Current limitation:
+Note:
+Chat currently requires manual refresh to update messages.
 
-Chat does not auto-update (manual refresh needed)
 🔮 Future Improvements
-Real-time chat using WebSockets
-Notifications
+Real-time chat (AJAX / WebSocket)
 Profile pictures
 Skill matching system
+Notifications
 Group chat
-Deploy on cloud (Render / AWS)
+Cloud deployment
 🛡️ Security Notes
-Add password hashing (recommended: werkzeug.security)
+Use password hashing (Werkzeug recommended)
 Validate file uploads
-Avoid storing plain passwords
+Do not store plain passwords
 📦 .gitignore Example
 __pycache__/
 *.pyc
@@ -127,18 +140,16 @@ static/uploads/
 
 Jaity Rangtaina
 BCA Analytics Student
-SkillSwap Project
 
 📄 License
 
-This project is for academic and learning purposes.
+This project is for academic purposes.
 
-🎯 Bonus (for your viva)
 
-If they ask:
+---
 
-Why Docker?
-👉 “To make my application portable and run consistently across different systems.”
+If you want, I can also:
+- make it **more advanced (like that JWT project)**  
+- or add **screenshots section + badges + GitHub Actions**
 
-Why GitHub?
-👉 “For version control, collaboration, and project showcasing.”
+Just tell me 👍
