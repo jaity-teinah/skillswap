@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Explore Skills</title>
+
+<style>
+
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#667eea,#764ba2);
+height:100vh;
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.container{
+background:#2f2f5a;
+padding:40px;
+border-radius:12px;
+width:700px;
+color:white;
+}
+
+.skill-card{
+background:#444;
+padding:15px;
+border-radius:8px;
+margin-bottom:15px;
+}
+
+h1{
+text-align:center;
+}
+
+.search-box{
+text-align:center;
+margin-bottom:20px;
+}
+
+input{
+padding:10px;
+border:none;
+border-radius:6px;
+width:250px;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:6px;
+background:orange;
+color:white;
+cursor:pointer;
+}
+
+a{
+color:orange;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Explore Skills</h1>
+
+<div class="search-box">
+
+<form method="POST">
+<input type="text" name="search" placeholder="Search skills, category, or user">
+<button type="submit">Search</button>
+</form>
+
+</div>
+
+{% if skills %}
+
+{% for skill in skills %}
+
+<div class="skill-card">
+
+<h3>{{skill.skill}}</h3>
+
+<p><b>Category:</b> {{skill.category}}</p>
+
+<p><b>Description:</b> {{skill.description}}</p>
+
+<p><b>Uploaded by:</b> {{skill.username}}</p>
+
+<a href="/request/{{skill.username}}/{{skill.skill}}">
+<button>Request Skill Swap</button>
+</a>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>No skills found.</p>
+
+{% endif %}
+
+<br>
+
+<center>
+<a href="/dashboard">Back to Dashboard</a>
+</center>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Skill Requests</title>
+
+<style>
+
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#667eea,#764ba2);
+height:100vh;
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.container{
+background:#2f2f5a;
+padding:40px;
+border-radius:12px;
+width:600px;
+color:white;
+}
+
+.request-card{
+background:#444;
+padding:15px;
+border-radius:8px;
+margin-bottom:10px;
+}
+
+h2{
+text-align:center;
+}
+
+button{
+padding:6px 12px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+margin-right:5px;
+}
+
+.accept{
+background:green;
+color:white;
+}
+
+.reject{
+background:red;
+color:white;
+}
+
+.chat{
+background:#3498db;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Skill Requests</h2>
+
+{% if requests %}
+
+{% for r in requests %}
+
+<div class="request-card">
+
+<p><b>{{r.sender}}</b> wants to learn <b>{{r.skill}}</b></p>
+
+<p>Status: {{r.status}}</p>
+
+<!-- SHOW ACCEPT/REJECT ONLY FOR RECEIVER -->
+{% if r.receiver == session["user"] and r.status == "Pending" %}
+
+<a href="/update_request/{{r.id}}/accept">
+<button class="accept">Accept</button>
+</a>
+
+<a href="/update_request/{{r.id}}/reject">
+<button class="reject">Reject</button>
+</a>
+
+{% endif %}
+
+<!-- SHOW CHAT BUTTON WHEN ACCEPTED -->
+{% if r.status == "Accepted" %}
+
+{% if r.sender == session["user"] %}
+<a href="/chat/{{r.receiver}}">
+<button class="chat">💬 Chat</button>
+</a>
+{% else %}
+<a href="/chat/{{r.sender}}">
+<button class="chat">💬 Chat</button>
+</a>
+{% endif %}
+
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>No requests yet.</p>
+
+{% endif %}
+
+<br>
+
+<center>
+<a href="/dashboard">Back to Dashboard</a>
+</center>
+
+</div>
+
+</body>
+</html>

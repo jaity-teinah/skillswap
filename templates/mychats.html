@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>My Chats</title>
+
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    height:100vh;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    background:#2f2f5a;
+    padding:40px;
+    border-radius:12px;
+    width:500px;
+    color:white;
+}
+
+.user{
+    background:#444;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:8px;
+}
+
+a{
+    color:orange;
+    text-decoration:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Your Chats</h2>
+
+{% if users %}
+
+    {% for u in users %}
+    <div class="user">
+        <a href="/chat/{{u}}">Chat with {{u}}</a>
+    </div>
+    {% endfor %}
+
+{% else %}
+
+    <p>No chats yet.</p>
+
+{% endif %}
+
+<br>
+
+<a href="/dashboard">Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

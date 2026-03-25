@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chat</title>
+
+<style>
+body{
+    font-family: Arial;
+    background: #ece5dd;
+}
+
+.chat-container{
+    width: 500px;
+    margin: auto;
+    background: white;
+    border-radius: 10px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    background: #075e54;
+    color: white;
+    padding: 15px;
+}
+
+.messages{
+    flex: 1;
+    padding: 10px;
+    overflow-y: scroll;
+    background: #e5ddd5;
+}
+
+.msg{
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    max-width: 70%;
+}
+
+.sent{
+    background: #dcf8c6;
+    margin-left: auto;
+}
+
+.received{
+    background: white;
+}
+
+.form{
+    display: flex;
+    padding: 10px;
+}
+
+input{
+    flex: 1;
+    padding: 10px;
+}
+
+button{
+    padding: 10px;
+    background: green;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+<<div class="header">
+    <a href="/dashboard" style="color:white; text-decoration:none; margin-right:10px;">
+        ← Back
+    </a>
+    Chat with {{username}}
+</div>
+
+<div class="messages">
+
+{% for m in messages %}
+<div class="msg {% if m.sender == session['user'] %}sent{% else %}received{% endif %}">
+    
+    {{ m.message }}
+
+    {% if m.sender == session['user'] %}
+        <br><small>{{ m.status }}</small>
+
+        <br>
+        <a href="/delete_message/{{ m.id }}" style="color:red;">Delete</a>
+    {% endif %}
+
+    {% if m.file %}
+    <br>
+    <a href="{{ url_for('static', filename='uploads/' + m.file) }}" target="_blank">
+        📎 File
+    </a>
+    {% endif %}
+
+</div>
+{% endfor %}
+
+</div>
+
+<form method="POST" enctype="multipart/form-data" class="form">
+<input type="text" name="message" placeholder="Type message..." required>
+<input type="file" name="file">
+<button type="submit">Send</button>
+</form>
+
+</div>
+
+</body>
+</html>

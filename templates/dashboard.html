@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Dashboard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+<h2>Welcome {{user}}</h2>
+
+<a href="/requests">📨 Requests</a>
+
+<br><br>
+
+<a href="/mychats">
+💬 Messages 
+{% if new_messages > 0 %}
+<span style="color:red;">(🔴 {{new_messages}} New)</span>
+{% endif %}
+</a>
+
+<hr>
+
+<h1>Welcome {{user}}</h1>
+
+<a href="/explore">Explore Skills</a> 
+<a href="/requests">View Skill Requests</a>|
+<a href="/logout">Logout</a>
+
+<h2>Add Skill</h2>
+
+<form action="/addskill" method="POST">
+
+<input type="text" name="skill" placeholder="Skill" required>
+
+<input type="text" name="category" placeholder="Category" required>
+
+<textarea name="description" placeholder="Description"></textarea>
+
+<button type="submit">Add Skill</button>
+
+</form>
+
+<h2>Your Skills</h2>
+
+{% for skill in skills %}
+
+<p>
+<b>{{skill.skill}}</b> - {{skill.category}}
+
+<a href="/delete/{{skill.id}}">Delete</a>
+
+</p>
+
+{% endfor %}
+
+</div>
+
+</body>
+
+</html>
+
