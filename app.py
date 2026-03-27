@@ -8,7 +8,11 @@ app = Flask(__name__)
 app.secret_key = "secretkey"
 
 # DATABASE
-app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc://JTY\\SQLEXPRESS/SkillSwapDB?driver=ODBC+Driver+17+for+SQL+Server&trusted_connection=yes"
+import os
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance', 'skillswap.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # FILE UPLOAD
@@ -217,6 +221,8 @@ def chat(username):
         db.session.add(new_msg)
         db.session.commit()
 
+        return redirect(f"/chat/{username}")
+
     # MARK AS SEEN
     Message.query.filter_by(
         receiver=session["user"],
@@ -264,4 +270,6 @@ def delete_message(id):
     return redirect(request.referrer)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True, host="0.0.0.0")
