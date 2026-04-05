@@ -1,4 +1,5 @@
-name: SkillSwap CI
+4"}
+name: SkillSwap Docker CI
 
 on:
   push:
@@ -6,20 +7,20 @@ on:
       - main
 
 jobs:
-  test:
+  docker-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+      - name: Build Docker Image
+        run: docker build -t skillswap-app .
 
-      - name: Install Dependencies
-        run: pip install flask flask_sqlalchemy werkzeug
+      - name: Run Docker Container
+        run: |
+          docker run -d -p 5000:5000 --name test-container skillswap-app
+          sleep 5
 
-      - name: Run Test
-        run: python -c "print('CI working')"
+      - name: Test App
+        run: curl http://127.0.0.1:5000 || exi
